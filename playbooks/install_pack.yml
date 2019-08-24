@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: no
+
+
+  tasks:
+  - name: Install Chrome
+    win_chocolatey:
+      name: googlechrome
+      state: present
+
+  - name: Install notepad++
+    win_chocolatey:
+       name: notepadplusplus.install
+       state: present

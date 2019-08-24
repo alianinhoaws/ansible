@@ -1,0 +1,6 @@
+
+---
+ansible_user : alianinho
+ansible_password : ^7YI@!9p_kN99~}
+ansible_connection : winrm
+ansible_winrm_server_cert_validation : ignore

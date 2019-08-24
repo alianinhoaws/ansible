@@ -1,0 +1,11 @@
+
+
+
+---
+  name: Connection test
+  hosts: all 
+
+
+  tasks: 
+    name: Test
+    win_ping: 

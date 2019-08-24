@@ -1,0 +1,21 @@
+
+---
+- name: New playbook
+  hosts: all
+  become: yes
+
+  vars:
+     secret: adwadsacdqvr
+     message1: Privet
+     message2: POka
+
+  tasks:
+
+  - name: Print  secret
+    debug:
+      msg: "secret: {{secret}}"
+
+  - set_fact: full_massage="{{ message1 }} {{ message2 }}"
+
+  - debug:
+        var: full_message

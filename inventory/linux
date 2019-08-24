@@ -1,0 +1,6 @@
+[linux]
+centos ansible_host=35.198.185.132
+ubuntu ansible_host=35.234.88.239
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

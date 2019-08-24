@@ -1,0 +1,2 @@
+[winsrv]
+serv1  ansible_host=35.234.121.113

@@ -1,0 +1,48 @@
+
+---
+- name: install apache and upload page
+  hosts: all
+  become: yes
+
+  vars:
+    source_file: /var/jenkins_home/workspace/githubtrigger/index.html
+    destn_file: /var/www/html
+
+  tasks:
+  - name: Check and print linux version
+    debug: var=ansible_os_family
+    
+  - block: #all for redhat
+
+    - name: install web server redhat
+      yum: name=httpd state=latest
+
+    - name: copy homepage
+      copy: src={{ source_file }} dest ={{ destn_file }} mode=0555
+      notify: restartApache_redhat
+
+    - name: start web service redhat
+      service: name=httpd state=started enabled=yes
+       
+    when: ansible_os_family == "RedHat"
+    
+  - block: #block for ubuntu 
+ 
+    - name: install web server debian
+      apt: name=apache2 state=latest
+
+    - name: copy homepage
+      copy: src={{ source_file }} dest ={{ destn_file }} mode=0555
+      notify: restartApache_debian
+
+    - name: start web service for debian
+      service: name=apache2 state=started enabled=yes
+     
+    when: ansible_os_family == "Debian"
+   
+  handlers:
+    - name: restartApache_redhat
+      service: name=httpd state=restarted
+
+    - name: restaApache_debian
+      service: name=apache2 state=restarted
